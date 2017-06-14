@@ -43,7 +43,7 @@ console.log('The CPU temperature is ' + strTempCPU);
 console.log('The CPU temperature is ' + getTemperature());
 ```
 
-In case you need the temperature as a number.
+In case you need the temperature as a number...
 ```
 console.log('The GPU temperature is ' + getTemperature('gpu', 'celsius', 'integer').toString() + '°C');
 ```
