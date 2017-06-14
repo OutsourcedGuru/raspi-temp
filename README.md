@@ -33,6 +33,9 @@ Either 'celsius' or 'fahrenheit' as a string should select which scale you're in
 ### type
 Use 'integer', 'decimal(2)' for a decimal with two digits of precision, or 'string' if you want to see the degree symbol plus either 'F' or 'C' at the end, with 'string' as the default.
 
+### returns
+The function will return a string or a number, depending upon that third argument.
+
 ## Examples
 ```
 var strTempCPU = getTemperature('cpu', 'fahrenheit');
