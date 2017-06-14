@@ -21,7 +21,7 @@ $ DEBUG=raspi-temp:* npm start
 
 From another computer, you'd then open up a browser session to something like `http://name-of-pi-host:3000`.  The home page of this simple site should exercise the JavaScript function to display the CPU and GPU temperatures in both celsius and fahrenheit.
 
-## getTemperature(which, scale)
+## getTemperature(which, scale, type)
 I've tried to create an easy-to-use interface here.
 
 ### which
@@ -29,6 +29,9 @@ Either 'cpu' or 'gpu' as a string should select which chip's temperature you're 
 
 ### scale
 Either 'celsius' or 'fahrenheit' as a string should select which scale you're interested in, with 'fahrenheit' as the default.
+
+### type
+Use 'integer', 'decimal(2)' for a decimal with two digits of precision, or 'string' if you want to see the degree symbol plus either 'F' or 'C' at the end, with 'string' as the default.
 
 ## Examples
 ```
@@ -38,4 +41,9 @@ console.log('The CPU temperature is ' + strTempCPU);
 ...or more directly...
 ```
 console.log('The CPU temperature is ' + getTemperature());
+```
+
+In case you need the temperature as a number.
+```
+console.log('The GPU temperature is ' + getTemperature('gpu', 'celsius', 'integer').toString() + '°C');
 ```
