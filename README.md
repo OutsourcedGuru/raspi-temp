@@ -1,5 +1,5 @@
 # raspi-temp
-JavaScript functions to query the Raspberry Pi's CPU and/or GPU temperature in celsius or fahrenheit
+JavaScript functions to query the Raspberry Pi's CPU in celsius or fahrenheit and perhaps later, the GPU temperature as well
 
 A lot of people probably think that you'd need to purchase a [Sense Hat](https://www.adafruit.com/product/2738) at $40 in order to ask the Pi how hot it is.  Clearly, if the Desktop which comes with the PIXEL version of Raspbian has access to the temperature of the Pi itself, then so should you.
 
@@ -19,19 +19,19 @@ $ npm install
 $ DEBUG=raspi-temp:* npm start
 ```
 
-From another computer, you'd then open up a browser session to something like `http://name-of-pi-host:3000`.  The home page of this simple site should exercise the JavaScript function to display the CPU and GPU temperatures in both celsius and fahrenheit.
+From another computer, you'd then open up a browser session to something like `http://name-of-pi-host.local:3000`.  The home page of this simple site should exercise the JavaScript function to display the CPU temperature in fahrenheit as a demonstration.
 
 ## getTemperature(which, scale, type)
 I've tried to create an easy-to-use interface here.
 
 ### which
-Either 'cpu' or 'gpu' as a string should select which chip's temperature you're interested in, with 'cpu' as the default.
+Either 'cpu' or 'gpu' as a string should select which chip's temperature you're interested in, with 'cpu' as the default.  As of v1.0.0, only cpu is currently supported.
 
 ### scale
 Either 'celsius' or 'fahrenheit' as a string should select which scale you're interested in, with 'fahrenheit' as the default.
 
 ### type
-Use 'integer', 'decimal(2)' for a decimal with two digits of precision, or 'string' if you want to see the degree symbol plus either 'F' or 'C' at the end, with 'string' as the default.
+Use 'integer', 'decimal(2)' for a decimal with two digits of precision, or 'string' if you want to see the degree symbol plus either 'F' or 'C' at the end, with 'string' as the default.  As of v1.0.0, null/integer/string are recognized and anything else returns decimal(2).
 
 ### returns
 The function will return a string or a number, depending upon that third argument.
