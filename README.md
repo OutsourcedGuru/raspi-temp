@@ -25,7 +25,7 @@ From another computer, you'd then open up a browser session to something like `h
 I've tried to create an easy-to-use interface here.
 
 ### which
-Either 'cpu' or 'gpu' as a string should select which chip's temperature you're interested in, with 'cpu' as the default.  As of v1.0.0, only cpu is currently supported.
+Either 'cpu' or 'gpu' as a string should select which chip's temperature you're interested in, with 'cpu' as the default.
 
 ### scale
 Either 'celsius' or 'fahrenheit' as a string should select which scale you're interested in, with 'fahrenheit' as the default.

@@ -16,7 +16,7 @@ exports.getTemperature = function(strWhich, strScale, strType, callback) {
   if (strWhich == 'gpu') {
     strCmdLineArgs = 'measure_temp';
     commands = [ strCmdLineArgs ];
-    childD = child_process.spawn('/opt/vcbin/vcgencmd', commands);
+    childD = child_process.spawn('/opt/vc/bin/vcgencmd', commands);
   } else {
     strCmdLineArgs = '/sys/class/thermal/thermal_zone0/temp';
     commands = [ strCmdLineArgs ];
@@ -30,18 +30,37 @@ exports.getTemperature = function(strWhich, strScale, strType, callback) {
     if (strWhich == 'gpu') {
       // GPU
       // temp=47.2'C
-      decimalTemperature = data;
+      var numberPattern = /\d+\.\d+/;
+      decimalTemperature = data.toString().match(numberPattern);
       if (strScale == 'fahrenheit') {
-        strReturnedTemp = 'Unsupported yet';
+        // fahrenheit
+        if (strType == 'integer') {
+          strReturnedTemp = Math.round((decimalTemperature * 9 / 5) + 32);
+        } else {
+          if (strType == 'string') {
+            strReturnedTemp = Math.round((decimalTemperature * 9 / 5) + 32).toString() + '°F';
+          } else {
+            strReturnedTemp = ((decimalTemperature * 9 / 5) + 32).toFixed(2);
+          } // else from if strType == 'string...
+        } // else from if (strType == 'int ...
       } else {
-        strReturnedTemp = 'Unsupported yet';
+        // celsius
+        if (strType == 'integer') {
+          strReturnedTemp = Math.round(decimalTemperature).toString();
+        } else {
+          if (strType == 'string') {
+            strReturnedTemp = Math.round(decimalTemperature).toString() + '°C';
+          } else {
+            strReturnedTemp = decimalTemperature.toString();
+          } // end else if (strType == 'string...
+        } // end else if (strType == 'int...
       } 
     } else {
       // CPU
       decimalTemperature = data / 1000;
       if (strScale == 'fahrenheit') {
         if (strType == 'integer') {
-          strReturnedTemp = Math.round((decimalTemperture * 9 / 5) + 32);
+          strReturnedTemp = Math.round((decimalTemperature * 9 / 5) + 32);
         } else {
           if (strType == 'string') {
             strReturnedTemp = Math.round((decimalTemperature * 9 / 5) + 32).toString() + '°F';
